@@ -11,7 +11,7 @@ st.title("JINGHAO CHEN")
 st.markdown("Data enthusiast | Problem Solver | Lifelong Learner")
 left, right = st.columns([1,1])
 with left:
-    st.image(r"static\my_photo.jpg", width='stretch', caption="Promoting Homeless shelter app at Langara Applied Research Day 2025")
+    st.image("static/my_photo.jpg", width='stretch', caption="Promoting Homeless shelter app at Langara Applied Research Day 2025")
 with right:
     st.subheader("About me", divider="gray")
     st.markdown(
