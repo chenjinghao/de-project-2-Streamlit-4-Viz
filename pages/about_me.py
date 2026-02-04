@@ -85,18 +85,6 @@ st.markdown(
     text_alignment='justify'
 )
 
-## Milestones section
-st.subheader("Recent milestones")
-st.markdown(
-    body="""
-    - The project: Real-Time Access to Essential Services for Communities received College and Community Social Innovation Fund grants from Natural Sciences and Engineering Research Council of Canada on 31 OCT 2025 [[Check here](https://nserc-crsng.canada.ca/en/funding-decisions/result/2267 "Search title: Real-Time Access to Essential Services for Communities")]. 
-    - Mentioned in [Langara College News](https://langara.ca/news-events/stories/meet-winners-applied-research-day "Meet the winners of the Applied Research Day") for developing a web application to help homeless individuals find essential services in real-time.
-    - Received the award for Student-involved project that highlights innovation/innovative practices at Langara Applied Research Day 2025 [[Project details here](https://ai4hvac.notion.site/ "AI-Powered Energy Optimizations at Langara College")].
-    - Presented our project with Roxanne Alvarez at the IEEE Canada CCECE 2024 event at Queen’s University [Check the post](https://www.linkedin.com/posts/adam-cjh_ccece2024-activity-7228522973136138240-u7bd?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtikWYBakf2A5nkYwXEa9fj4-17kbdDzVI)!""",
-    width='stretch',
-    text_alignment='justify'
-)
-
 ## Know about me section
 st.subheader("Know more about me", divider="gray")
 
@@ -127,3 +115,16 @@ with resume:
 #         url="mailto:adam_cjh@outlook.com",
 #         use_container_width=True,
 #     )
+
+## Milestones section
+st.subheader("Recent milestones")
+st.markdown(
+    body="""
+    - The project: Real-Time Access to Essential Services for Communities received College and Community Social Innovation Fund grants from Natural Sciences and Engineering Research Council of Canada on 31 OCT 2025 [[Check here](https://nserc-crsng.canada.ca/en/funding-decisions/result/2267 "Search title: Real-Time Access to Essential Services for Communities")]. 
+    - Mentioned in [Langara College News](https://langara.ca/news-events/stories/meet-winners-applied-research-day "Meet the winners of the Applied Research Day") for developing a web application to help homeless individuals find essential services in real-time.
+    - Received the award for Student-involved project that highlights innovation/innovative practices at Langara Applied Research Day 2025 [[Project details here](https://ai4hvac.notion.site/ "AI-Powered Energy Optimizations at Langara College")].
+    - Presented our project with Roxanne Alvarez at the IEEE Canada CCECE 2024 event at Queen’s University [Check the post](https://www.linkedin.com/posts/adam-cjh_ccece2024-activity-7228522973136138240-u7bd?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtikWYBakf2A5nkYwXEa9fj4-17kbdDzVI)!""",
+    width='stretch',
+    text_alignment='justify'
+)
+
