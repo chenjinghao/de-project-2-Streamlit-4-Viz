@@ -1,2 +1,4 @@
 # requirements.txt
 streamlit==1.53.1
+gspread
+google-auth
