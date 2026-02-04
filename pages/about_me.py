@@ -1,6 +1,8 @@
+import os
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
+import json
 
 # Constant values
 
@@ -9,22 +11,28 @@ PERSONAL_WEBSITE_URL = "https://adamchenjinghao.notion.site/beyond"
 
 # Counter to track button clicks
 ## connect and update with google sheet
-URL = "https://docs.google.com/spreadsheets/d/1eVDB1T-Ded34ycwNqJX36YD5heNIDlrUVGco7zR-X4w/edit?usp=sharing"
+### for local setup, comment out the below line and uncomment the following block
+# URL = "https://docs.google.com/spreadsheets/d/1eVDB1T-Ded34ycwNqJX36YD5heNIDlrUVGco7zR-X4w/edit?usp=sharing"
 
+# def get_creds():
+#     creds_info = {
+#         "type": st.secrets["type"],
+#         "project_id": st.secrets["project_id"],
+#         "private_key_id": st.secrets["private_key_id"],
+#         "private_key": st.secrets["private_key"].replace("\\n", "\n"),
+#         "client_email": st.secrets["client_email"],
+#         "client_id": st.secrets["client_id"],
+#         "auth_uri": st.secrets["auth_uri"],
+#         "token_uri": st.secrets["token_uri"],
+#         "auth_provider_x509_cert_url": st.secrets["auth_provider_x509_cert_url"],
+#         "client_x509_cert_url": st.secrets["client_x509_cert_url"],
+#     }
+#     return Credentials.from_service_account_info(creds_info, scopes=["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"])
+
+## for deployment, comment out the above block
 def get_creds():
-    creds_info = {
-        "type": st.secrets["type"],
-        "project_id": st.secrets["project_id"],
-        "private_key_id": st.secrets["private_key_id"],
-        "private_key": st.secrets["private_key"].replace("\\n", "\n"),
-        "client_email": st.secrets["client_email"],
-        "client_id": st.secrets["client_id"],
-        "auth_uri": st.secrets["auth_uri"],
-        "token_uri": st.secrets["token_uri"],
-        "auth_provider_x509_cert_url": st.secrets["auth_provider_x509_cert_url"],
-        "client_x509_cert_url": st.secrets["client_x509_cert_url"],
-    }
-    return Credentials.from_service_account_info(creds_info, scopes=["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"])
+    parsed_credentials = json.loads(os.environ["gcp_service_acc"])
+    return Credentials.from_service_account_info(parsed_credentials, scopes=["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"])
 
 
 try:
