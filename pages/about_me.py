@@ -76,7 +76,6 @@ with counter_right:
 
 
 ## Skills section
-st.markdown(body="**Technical Skills**", width='stretch', text_alignment='left')
 st.markdown(
     body="""
 ![Skills](https://skills.syvixor.com/api/icons?perline=15&i=docker,googlecloud,python,airflow,postgresql,dbt,dlthub,scikitlearn,powerbi,streamlit,github,notion)
@@ -109,12 +108,6 @@ with resume:
     url=r"https://adamchenjinghao.notion.site/my-Resume-3b113ebf370a4ef1952ee5acd8ed0923",
     use_container_width=True,
     )
-# with contact_me:
-#     st.link_button(
-#         label=":email: Email Me",
-#         url="mailto:adam_cjh@outlook.com",
-#         use_container_width=True,
-#     )
 
 ## Milestones section
 st.subheader("Recent milestones")
