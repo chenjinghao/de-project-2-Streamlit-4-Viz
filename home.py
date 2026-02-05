@@ -30,25 +30,35 @@ import os
 import json
 
 def get_engine():
-    if "service_account" in st.secrets:
-        sa_info = st.secrets["service_account"]
-    else:
+    sa_info = None
+    try:
+        if "service_account" in st.secrets:
+            sa_info = st.secrets["service_account"]
+    except Exception:
+        pass
+
+    if sa_info is None:
         sa_info = json.loads(os.environ.get("gcp_service_acc"))
 
     creds = service_account.Credentials.from_service_account_info(sa_info)
     connector = Connector(credentials=creds)
 
     def getconn():
-        if "db_credentials" in st.secrets:
-            conn = connector.connect(
-                st.secrets["db_credentials"]["instance_connection_name"],
-                "pg8000",
-                user=st.secrets["db_credentials"]["db_user"],
-                password=st.secrets["db_credentials"]["db_pass"],
-                db=st.secrets["db_credentials"]["db_name"],
-                ip_type=IPTypes.PUBLIC 
-            )
-        else:
+        conn = None
+        try:
+            if "db_credentials" in st.secrets:
+                conn = connector.connect(
+                    st.secrets["db_credentials"]["instance_connection_name"],
+                    "pg8000",
+                    user=st.secrets["db_credentials"]["db_user"],
+                    password=st.secrets["db_credentials"]["db_pass"],
+                    db=st.secrets["db_credentials"]["db_name"],
+                    ip_type=IPTypes.PUBLIC 
+                )
+        except Exception:
+            pass
+
+        if conn is None:
             conn = connector.connect(
                 os.environ.get("instance_connection_name"),
                 "pg8000",
