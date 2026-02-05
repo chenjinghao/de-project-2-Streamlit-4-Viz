@@ -7,9 +7,13 @@ import json
 
 def get_engine():
     env = None
-    if st.secrets['mode']['ENVIRONMENT']:
-        env = "development"
-    else:
+    try:
+        if st.secrets['mode']['ENVIRONMENT']:
+            env = "development"
+    except Exception:
+        pass
+
+    if not env:
         env = os.environ.get("ENVIRONMENT")
 
     if env == "development":
