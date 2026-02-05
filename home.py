@@ -1,5 +1,12 @@
 import streamlit as st
 
+# Configure the default settings of the page.
+st.set_page_config(
+    page_title="JINGHAO's Data Engineering Project",
+    page_icon=":material/code_blocks:",
+)
+
+
 pages = {
     "Dashboard": [
         st.Page("pages/dashboard.py", title="Dashboard")

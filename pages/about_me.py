@@ -9,6 +9,12 @@ import json
 LINKEDIN_URL = "https://www.linkedin.com/in/adam-cjh/"
 PERSONAL_WEBSITE_URL = "https://adamchenjinghao.notion.site/beyond"
 
+# Configure the default settings of the page.
+st.set_page_config(
+    page_title="JINGHAO's Data Engineering Project",
+    page_icon=":material/code_blocks:",
+)
+
 # Counter to track button clicks
 ## connect and update with google sheet
 ### for local setup, comment out the below line and uncomment the following block

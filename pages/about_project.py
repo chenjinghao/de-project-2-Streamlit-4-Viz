@@ -6,6 +6,12 @@ PERSONAL_WEBSITE_URL = "https://adamchenjinghao.notion.site/my-Portfolio-52dd63a
 GITHUB_URL_PROJECT_ELT = "https://github.com/chenjinghao/de-project-1-airflow-dbt-4-ELT.git"
 GITHUB_URL_PROJECT_VIZ = "https://github.com/chenjinghao/de-project-2-Streamlit-4-Viz.git"
 
+# Configure the default settings of the page.
+st.set_page_config(
+    page_title="JINGHAO's Data Engineering Project",
+    page_icon=":material/code_blocks:",
+)
+
 # Page content
 st.title("About Projects")
 
