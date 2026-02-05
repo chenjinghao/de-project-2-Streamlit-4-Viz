@@ -6,7 +6,11 @@ import os
 import json
 
 def get_engine():
-    env = st.secrets.get("mode", {}).get("ENVIRONMENT", "production")
+    env = None
+    if st.secrets['mode']['ENVIRONMENT'] == "development":
+        env = "development"
+    else:
+        env = os.environ.get("ENVIRONMENT")
 
     if env == "development":
         local_url = st.secrets["local_db"]["url"]
