@@ -1,4 +1,6 @@
 # requirements.txt
 streamlit==1.53.1
 gspread
+google-cloud-sql-connector[pg8000]
+sqlalchemy
 google-auth
