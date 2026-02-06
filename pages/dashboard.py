@@ -40,7 +40,7 @@ df_selected_date_stock_info = load_selected_date_stock_info(selected_date=st.ses
 df_stock_ranked_by_volume = df_selected_date_stock_info[['ticker', 'volume']].sort_values(by='volume', ascending=False).reset_index(drop=True)
 
 list_most_active_stocks = df_stock_ranked_by_volume['ticker'][:3].tolist()
-first_stock, second_stock, third_stock, fourth_stock= st.tabs([f":1st_place_medal: {list_most_active_stocks[0]}", f":2nd_place_medal: {list_most_active_stocks[1]}", f":3rd_place_medal: {list_most_active_stocks[2]}", ":dart: Check your stock"])
+first_stock, second_stock, third_stock = st.tabs([f":1st_place_medal: {list_most_active_stocks[0]}", f":2nd_place_medal: {list_most_active_stocks[1]}", f":3rd_place_medal: {list_most_active_stocks[2]}"])
 
 with first_stock:
     st.subheader(f"Stock Info for {list_most_active_stocks[0]} on {st.session_state['selected_date']}")
@@ -75,16 +75,3 @@ with third_stock:
     # Display the metrics
     metric_visualization(df_third_stock_info)
 
-with fourth_stock:
-    # st.subheader("Check your stock!")
-    with st.expander("Instructions for checking your stock info"):
-        st.markdown(body="First, get your free API key from Alpha Vantage [here](https://www.alphavantage.co/support/#api-key)")
-        st.markdown(body="Then, enter your API key and the stock ticker symbol you want to check!")
-        st.markdown(body="Finally, click the button to get the stock info for the most recent date from Alpha Vantage!")
-    col_1, col_2 = st.columns(2)
-    user_api_key = col_1.text_input("Enter your Alpha Vantage API Key:")
-    user_stock = col_2.text_input("Enter a stock ticker symbol:")
-    if st.button("Get Stock Info", type="primary"):
-        if user_api_key and user_stock:
-            pass
-    
