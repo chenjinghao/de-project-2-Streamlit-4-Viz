@@ -1,6 +1,22 @@
+import math
 import streamlit as st
 
 def metric_visualization(dataframe):
+    # Helpers to coalesce NaN/None to sensible defaults
+    def safe_float(val, default=0.0):
+        try:
+            f = float(val)
+            return 0.0 if math.isnan(f) else f
+        except Exception:
+            return default
+
+    def safe_int(val, default=0):
+        try:
+            i = int(val)
+            return default if math.isnan(i) else i
+        except Exception:
+            return default
+
     with st.container(border=True,
                         horizontal_alignment="center",
                         vertical_alignment="center"):
@@ -9,18 +25,18 @@ def metric_visualization(dataframe):
         close_price_col, close_price_change_amount, avg_price_col = st.columns(3)
         close_price_col.metric(
             label="Closing Price",
-            value=f"${float(dataframe['price'].values[0]):,.2f}",
-            delta=float(dataframe['change_percentage'].values[0]) / 100,
+            value=f"${safe_float(dataframe['price'].values[0]):,.2f}",
+            delta=safe_float(dataframe['change_percentage'].values[0]) / 100,
             format="percent",
         )
         close_price_change_amount.metric(
             label="Change Amount",
-            value=f"${float(dataframe['change_amount'].values[0]):,.2f}"
+            value=f"${safe_float(dataframe['change_amount'].values[0]):,.2f}"
         )
 
         avg_price_col.metric(
             label="Average price (Past 100 Days)",
-            value=f"${float(dataframe['avg_close_price_past_100days'].values[0]):,.2f}",
+            value=f"${safe_float(dataframe['avg_close_price_past_100days'].values[0]):,.2f}",
             delta="Above Current Price" if dataframe['price_vs_100days_avg'].values[0] == 'Below Average 100 Days price' else "Below Current Price",
             delta_arrow="off",
             delta_color="green" if dataframe['price_vs_100days_avg'].values[0] == 'Above Average 100 Days price' else "red"
@@ -31,13 +47,13 @@ def metric_visualization(dataframe):
         volume_col, avg_volume_col = st.columns(2)
         volume_col.metric(
             label="Volume",
-            value=f"{int(dataframe['volume'].values[0]):,}"
+            value=f"{safe_int(dataframe['volume'].values[0]):,}"
             
         )
 
         avg_volume_col.metric(
             label="Average volume (Past 100 Days)",
-            value=f"{int(dataframe['avg_volume_past_100days'].values[0]):,}",
+            value=f"{safe_int(dataframe['avg_volume_past_100days'].values[0]):,}",
             delta="Below Current Volume" if dataframe['volume_vs_100days_avg'].values[0] == 'Above Average 100 Days volume' else "Above Current Volume",
             delta_arrow="off",
             delta_color="green" if dataframe['volume_vs_100days_avg'].values[0] == 'Above Average 100 Days volume' else "red"
@@ -50,19 +66,19 @@ def metric_visualization(dataframe):
             bullish, neutral, bearish, avg_sentiment_score = st.columns(4)
             bullish.metric(
                 label="Bullish",
-                value=f"{int(dataframe['bullish_count'].values[0])}",
+                value=f"{safe_int(dataframe['bullish_count'].values[0])}",
             )
             neutral.metric(
                 label="Neutral",
-                value=f"{int(dataframe['neutral_count'].values[0])}",
+                value=f"{safe_int(dataframe['neutral_count'].values[0])}",
             )
             bearish.metric(
                 label="Bearish",
-                value=f"{int(dataframe['bearish_count'].values[0])}",
+                value=f"{safe_int(dataframe['bearish_count'].values[0])}",
             )
             avg_sentiment_score.metric(
                 label="Average Sentiment Score",
-                value=f"{float(dataframe['avg_sentiment_score'].values[0]):.2f}",
+                value=f"{safe_float(dataframe['avg_sentiment_score'].values[0]):.2f}",
             )
         except TypeError as e:
             st.error("No news data available for this stock on the selected date.")
