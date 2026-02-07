@@ -38,6 +38,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 ## Project Repositories section
+st.write(":point_right: To view more details, please visit the GitHub project repositories:")
 col_viz, col_elt = st.columns([1,1])
 with col_viz:
     st.link_button(

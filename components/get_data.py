@@ -11,8 +11,6 @@ def get_dates(engine):
             result = conn.execute(sqlalchemy.text(query))
             
             # 2. Construct DataFrame from the result object
-            # result.fetchall() gets the data
-            # result.keys() gets the column names
             df = pd.DataFrame(result.fetchall(), columns=result.keys())
 
             # 3. put value from date column into a list
@@ -32,8 +30,6 @@ def get_stock_info_4_selected_date(engine, selected_date):
             result = conn.execute(sqlalchemy.text(query))
             
             # 2. Construct DataFrame from the result object
-            # result.fetchall() gets the data
-            # result.keys() gets the column names
             df = pd.DataFrame(result.fetchall(), columns=result.keys())
             
             return df
@@ -50,10 +46,55 @@ def get_biz_info_4_selected_ticker(engine, selected_ticker):
             result = conn.execute(sqlalchemy.text(query))
             
             # 2. Construct DataFrame from the result object
-            # result.fetchall() gets the data
-            # result.keys() gets the column names
             df = pd.DataFrame(result.fetchall(), columns=result.keys())
             
             return df
     except Exception as e:
         print(e)  
+
+def get_stock_price_4_selected_date(engine, selected_date):
+    query = f"SELECT * FROM mart_price_vol_chgn WHERE extraction_date = '{selected_date}'"
+
+    try:
+        with engine.connect() as conn:
+            # 1. Execute using SQLAlchemy directly
+            result = conn.execute(sqlalchemy.text(query))
+            
+            # 2. Construct DataFrame from the result object
+            df = pd.DataFrame(result.fetchall(), columns=result.keys())
+            
+            return df
+    except Exception as e:
+        print(e)   
+
+#-------------------------------------------------------------------
+def get_stock_price_4_selected_date_n_symbol(engine, selected_date, selected_symbol):
+    query = f"SELECT * FROM stg_price WHERE extraction_date = '{selected_date}' AND symbol = '{selected_symbol}'"
+
+    try:
+        with engine.connect() as conn:
+            # 1. Execute using SQLAlchemy directly
+            result = conn.execute(sqlalchemy.text(query))
+            
+            # 2. Construct DataFrame from the result object
+            df = pd.DataFrame(result.fetchall(), columns=result.keys())
+            
+            return df
+    except Exception as e:
+        print(e)   
+
+#-------------------------------------------------------------------
+def get_relevant_news_4_selected_date_n_symbol(engine, selected_date, selected_symbol):
+    query = f"SELECT url, title, time_published_date, ticker_sentiment_label FROM mart_news__recent WHERE extraction_date = '{selected_date}' AND mentioned_ticker = '{selected_symbol}' order by time_published_date desc"
+
+    try:
+        with engine.connect() as conn:
+            # 1. Execute using SQLAlchemy directly
+            result = conn.execute(sqlalchemy.text(query))
+            
+            # 2. Construct DataFrame from the result object
+            df = pd.DataFrame(result.fetchall(), columns=result.keys())
+            
+            return df
+    except Exception as e:
+        print(e)   

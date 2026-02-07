@@ -4,3 +4,4 @@ gspread
 sqlalchemy
 google-auth
 cloud-sql-python-connector[pg8000]
+plotly==6.3.0
