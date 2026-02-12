@@ -6,6 +6,7 @@ from components.visualization import metric_visualization, company_info_visualiz
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 # Configure the default settings of the page.
 st.set_page_config(
@@ -19,7 +20,8 @@ ENGINE = get_engine()
 
 st.title("Stock Analysis Dashboard")
 st.markdown('This dashboard provides insights for the top 3 most active stocks based on trading volume for a selected date.')
-
+st.write(os.environ.get("ENVIRONMENT"))
+st.write(os.environ.get("DATABASE_URL"))
 # Getting data
 
 ## Date selection
