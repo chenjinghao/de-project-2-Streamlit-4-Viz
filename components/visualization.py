@@ -93,7 +93,7 @@ def metric_visualization(dataframe):
 def company_info_visualization(biz_info, selected_df):
     # Guard against empty datasets to avoid index errors
     if biz_info is None or biz_info.empty:
-        st.warning("Company info not available for this ticker.")
+        st.warning("Company info not available for this ticker. It may be a ETF without underlying company data.")
         return
     if selected_df is None or selected_df.empty:
         st.warning("Price data not available for this ticker.")
@@ -148,25 +148,29 @@ def sentiment_and_ratings_visualization(dataframe, biz_info, key):
                     .melt(var_name='sentiment', value_name='count')
                     .replace({'sentiment': sentiment_labels})
                 )
-                
-                fig_news_sentiment = px.pie(df_news_sentiment, 
-                                            names='sentiment', 
-                                            values='count', 
-                                            title='News Sentiment Distribution')
-                fig_news_sentiment.update_layout(
-                                                legend=dict(
-                                                    orientation="h",
-                                                    yanchor="top",
-                                                    y=-0.2,
-                                                    xanchor="center",
-                                                    x=0.5
-                                                ),
-                                                title=dict(x=0.5, xanchor="center")
-                                            )
-                try:
-                    st.plotly_chart(fig_news_sentiment, theme="streamlit", width='stretch', key=f"{key}_news")
-                except Exception as e:
-                    st.warning(f"Unable to render news sentiment chart: {e}")
+
+                # Check if there is any data to render
+                if df_news_sentiment['count'].sum() == 0:
+                    st.warning("News sentiment data not available.")
+                else:
+                    fig_news_sentiment = px.pie(df_news_sentiment, 
+                                                names='sentiment', 
+                                                values='count', 
+                                                title='News Sentiment Distribution')
+                    fig_news_sentiment.update_layout(
+                                                    legend=dict(
+                                                        orientation="h",
+                                                        yanchor="top",
+                                                        y=-0.2,
+                                                        xanchor="center",
+                                                        x=0.5
+                                                    ),
+                                                    title=dict(x=0.5, xanchor="center")
+                                                )
+                    try:
+                        st.plotly_chart(fig_news_sentiment, theme="streamlit", width='stretch', key=f"{key}_news")
+                    except Exception as e:
+                        st.warning(f"Unable to render news sentiment chart: {e}")
             with analyst_rating_cols:
                 rating_labels = {
                     'AnalystRatingStrongBuy': 'Strong Buy',
@@ -181,24 +185,28 @@ def sentiment_and_ratings_visualization(dataframe, biz_info, key):
                     .replace({'rating': rating_labels})
                 )
 
-                fig_analyst_rating = px.pie(df_biz_analyst_rating, 
-                                            names='rating', 
-                                            values='count', 
-                                            title='Analyst Ratings Distribution')
-                fig_analyst_rating.update_layout(
-                                                legend=dict(
-                                                    orientation="h",
-                                                    yanchor="top",
-                                                    y=-0.2,
-                                                    xanchor="center",
-                                                    x=0.5
-                                                ),
-                                                title=dict(x=0.5, xanchor="center")
-                                            )
-                try:
-                    st.plotly_chart(fig_analyst_rating, theme="streamlit", width='stretch', key=f"{key}_analyst")
-                except Exception as e:
-                    st.warning(f"Unable to render analyst rating chart: {e}")
+                # Check if there is any data to render
+                if df_biz_analyst_rating['count'].sum() == 0:
+                    st.warning("Analyst ratings data not available.")
+                else:
+                    fig_analyst_rating = px.pie(df_biz_analyst_rating, 
+                                                names='rating', 
+                                                values='count', 
+                                                title='Analyst Ratings Distribution')
+                    fig_analyst_rating.update_layout(
+                                                    legend=dict(
+                                                        orientation="h",
+                                                        yanchor="top",
+                                                        y=-0.2,
+                                                        xanchor="center",
+                                                        x=0.5
+                                                    ),
+                                                    title=dict(x=0.5, xanchor="center")
+                                                )
+                    try:
+                        st.plotly_chart(fig_analyst_rating, theme="streamlit", width='stretch', key=f"{key}_analyst")
+                    except Exception as e:
+                        st.warning(f"Unable to render analyst rating chart: {e}")
 
 
 #-------------------------------------------------------------------

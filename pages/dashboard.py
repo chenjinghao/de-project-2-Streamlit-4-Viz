@@ -20,8 +20,6 @@ ENGINE = get_engine()
 
 st.title("Stock Analysis Dashboard")
 st.markdown('This dashboard provides insights for the top 3 most active stocks based on trading volume for a selected date.')
-st.write(os.environ.get("ENVIRONMENT"))
-st.write(os.environ.get("DATABASE_URL"))
 # Getting data
 
 ## Date selection
