@@ -3,10 +3,7 @@ import streamlit as st
 from connection.database import get_engine
 from components.get_data import get_dates, get_stock_info_4_selected_date, get_biz_info_4_selected_ticker, get_stock_price_4_selected_date, get_stock_price_4_selected_date_n_symbol, get_relevant_news_4_selected_date_n_symbol
 from components.visualization import metric_visualization, company_info_visualization, sentiment_and_ratings_visualization, price_volume_visualization, relevant_news_visualization
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-import os
+
 
 # Configure the default settings of the page.
 st.set_page_config(
@@ -19,7 +16,7 @@ ENGINE = get_engine()
 
 
 st.title("Stock Analysis Dashboard")
-st.markdown('This dashboard provides insights for the top 3 most active stocks based on trading volume for a selected date.')
+st.markdown('The top 3 most active stocks based on trading volume for a selected date.')
 # Getting data
 
 ## Date selection
