@@ -20,6 +20,9 @@ def get_engine():
         local_url = st.secrets["local_db"]["url"]
         return sqlalchemy.create_engine(local_url)
     
+    elif env == "PRODUCTION":
+        return sqlalchemy.create_engine(os.environ.get("DATABASE_URL"))
+    
     else:
         # 1. Setup credentials once
         sa_info = json.loads(os.environ.get("gcp_service_acc"))
