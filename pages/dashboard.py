@@ -40,6 +40,10 @@ def load_selected_date_stock_price_info(selected_date):
 
 # Main content
 dates = load_dates()
+if not dates:
+    st.warning("No dates available. Please check the database connection.")
+    st.stop()
+
 selected_date = st.selectbox(label="Select a date", options=dates)
 st.badge(label=f"Selected date: {selected_date}",
             icon=":material/today:",
