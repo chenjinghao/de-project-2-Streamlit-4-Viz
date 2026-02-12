@@ -93,10 +93,10 @@ def company_info_visualization(biz_info, selected_df):
     # Guard against empty datasets to avoid index errors
     if biz_info is None or biz_info.empty:
         st.warning("Company info not available for this ticker. It may be a ETF without underlying company data.")
-        return
+        
     if selected_df is None or selected_df.empty:
         st.warning("Price data not available for this ticker.")
-        return
+        
 
     current_price = selected_df['price'].values[0]
     with st.expander("Company Info"):
