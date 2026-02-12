@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.14-slim
+FROM python:3.11-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -15,4 +15,4 @@ COPY . .
 
 # Run streamlit when the container launches
 # Cloud Run expects the app to listen on the environment variable PORT
-CMD streamlit run home.py --server.port=8501 --server.address=0.0.0.0
+CMD streamlit run home.py --server.port=${PORT:-8501} --server.address=0.0.0.0

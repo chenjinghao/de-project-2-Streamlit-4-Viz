@@ -23,7 +23,7 @@ def get_engine():
     elif env == "PRODUCTION":
         return sqlalchemy.create_engine(os.environ.get("DATABASE_URL"))
     
-    else:
+    elif env == "CLOUD_SQL":
         # 1. Setup credentials once
         sa_info = json.loads(os.environ.get("gcp_service_acc"))
         creds = service_account.Credentials.from_service_account_info(sa_info)
