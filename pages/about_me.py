@@ -21,7 +21,7 @@ st.set_page_config(
 URL = "https://docs.google.com/spreadsheets/d/1eVDB1T-Ded34ycwNqJX36YD5heNIDlrUVGco7zR-X4w/edit?usp=sharing"
 
 def get_creds():
-    env_json = os.getenv("gcp_service_acc")  # no KeyError
+    env_json = os.getenv("gcp_service_acc")
     if env_json:
         creds_info = json.loads(env_json)
     else:
