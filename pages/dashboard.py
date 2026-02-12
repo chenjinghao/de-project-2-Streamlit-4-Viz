@@ -15,8 +15,8 @@ st.set_page_config(
 ENGINE = get_engine()
 
 
-st.title("Stock Analysis Dashboard")
-st.markdown('The top 3 most active stocks based on trading volume for a selected date.')
+st.title("Tickers Analysis Dashboard")
+st.markdown('The top 3 most active tickers based on trading volume for a selected date.')
 # Getting data
 
 ## Date selection
@@ -24,12 +24,12 @@ st.markdown('The top 3 most active stocks based on trading volume for a selected
 def load_dates():
     return get_dates(ENGINE)
 
-## Getting the stock info from table mart_price_news__analysis for the selected date, and display the top 3 most active stocks based on volume
+## Getting the ticker info from table mart_price_news__analysis for the selected date, and display the top 3 most active tickers based on volume
 @st.cache_data
 def load_selected_date_stock_info(selected_date):
     return get_stock_info_4_selected_date(ENGINE, selected_date)
 
-## Getting the stock price, volume change data from mart_price_vol_chgn table for the selected date of the top 3 most active stocks, and display the charts
+## Getting the ticker price, volume change data from mart_price_vol_chgn table for the selected date of the top 3 most active tickers, and display the charts
 @st.cache_data
 def load_selected_date_stock_price_info(selected_date):
     return get_stock_price_4_selected_date(ENGINE, selected_date)
@@ -56,7 +56,7 @@ list_most_active_stocks = df_stock_ranked_by_volume['ticker'][:3].tolist()
 ## Display data for the selected date
 first_stock, second_stock, third_stock = st.tabs([f":1st_place_medal: {list_most_active_stocks[0]}", f":2nd_place_medal: {list_most_active_stocks[1]}", f":3rd_place_medal: {list_most_active_stocks[2]}"])
 with first_stock:
-    st.subheader(f"Stock Info for {list_most_active_stocks[0]} on {st.session_state['selected_date']}")
+    st.subheader(f"Tickers Info for {list_most_active_stocks[0]} on {st.session_state['selected_date']}")
     df_first_stock_info = df_selected_date_stock_info[df_selected_date_stock_info['ticker'] == list_most_active_stocks[0]]
     
     # Display the company info. in a expander
@@ -73,7 +73,7 @@ with first_stock:
     df_price_vol = get_stock_price_4_selected_date_n_symbol(ENGINE, st.session_state['selected_date'], list_most_active_stocks[0])
     df_price_vol_chgn = load_selected_date_stock_price_info(selected_date=st.session_state['selected_date'])
     
-    # Chart: Stock Price and Volume Movement (Past 100 Days)
+    # Chart: Tickers Price and Volume Movement (Past 100 Days)
     price_volume_visualization(df_price_vol, df_price_vol_chgn, df_first_stock_info, key=f'first_stock_{list_most_active_stocks[0]}')
     
     # Display relevant news articles
@@ -82,7 +82,7 @@ with first_stock:
     )
     relevant_news_visualization(df_first_stock_relevant_news)
 with second_stock:
-    st.subheader(f"Stock Info for {list_most_active_stocks[1]} on {st.session_state['selected_date']}")
+    st.subheader(f"Tickers Info for {list_most_active_stocks[1]} on {st.session_state['selected_date']}")
     df_second_stock_info = df_selected_date_stock_info[df_selected_date_stock_info['ticker'] == list_most_active_stocks[1]]
     
     # Display the company info. in a expander
@@ -99,7 +99,7 @@ with second_stock:
     df_price_vol = get_stock_price_4_selected_date_n_symbol(ENGINE, st.session_state['selected_date'], list_most_active_stocks[1])
     df_price_vol_chgn = load_selected_date_stock_price_info(selected_date=st.session_state['selected_date'])
     
-    # Chart: Stock Price and Volume Movement (Past 100 Days)
+    # Chart: Tickers Price and Volume Movement (Past 100 Days)
     price_volume_visualization(df_price_vol, df_price_vol_chgn, df_second_stock_info, key=f'second_stock_{list_most_active_stocks[1]}')
     
     # Display relevant news articles
@@ -109,7 +109,7 @@ with second_stock:
     relevant_news_visualization(df_second_stock_relevant_news)
 
 with third_stock:
-    st.subheader(f"Stock Info for {list_most_active_stocks[2]} on {st.session_state['selected_date']}")
+    st.subheader(f"Tickers Info for {list_most_active_stocks[2]} on {st.session_state['selected_date']}")
 
     # Get data for the third most active stock
     df_third_stock_info = df_selected_date_stock_info[df_selected_date_stock_info['ticker'] == list_most_active_stocks[2]]
@@ -129,7 +129,7 @@ with third_stock:
     df_price_vol = get_stock_price_4_selected_date_n_symbol(ENGINE, st.session_state['selected_date'], list_most_active_stocks[2])
     df_price_vol_chgn = load_selected_date_stock_price_info(selected_date=st.session_state['selected_date'])
     
-    ## Chart: Stock Price and Volume Movement (Past 100 Days)
+    ## Chart: Tickers Price and Volume Movement (Past 100 Days)
     price_volume_visualization(df_price_vol, df_price_vol_chgn, df_third_stock_info, key=f'third_stock_{list_most_active_stocks[2]}')
 
     # Display relevant news articles
