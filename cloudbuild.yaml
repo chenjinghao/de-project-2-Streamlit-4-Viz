@@ -16,9 +16,9 @@ steps:
       - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest'
       - '.'
 
-  # 2. Push the Docker image (pushes both :$COMMIT_SHA and :latest)
+  # 2. Push the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME']
+    args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA']
 
   # 3. Deploy the image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
