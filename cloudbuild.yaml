@@ -19,6 +19,10 @@ steps:
       - '--region'
       - '$_REGION'
       - '--allow-unauthenticated'
+      - '--set-secrets=ENVIRONMENT=projects/$PROJECT_ID/secrets/environnement/versions/latest'
+      - '--set-secrets=DATABASE_URL=projects/$PROJECT_ID/secrets/conn_stocks_db/versions/latest'
+      - '--set-secrets=gcp_service_acc=projects/$PROJECT_ID/secrets/service_account/versions/latest'
+
 
 substitutions:
   _SERVICE_NAME: streamlit-viz-app
