@@ -149,7 +149,7 @@ def sentiment_and_ratings_visualization(dataframe, biz_info, key):
                 )
 
                 # Check if there is any data to render
-                if df_news_sentiment['count'].sum() == 0:
+                if df_news_sentiment.empty or df_news_sentiment['count'].sum() == 0:
                     st.warning("News sentiment data not available.")
                 else:
                     fig_news_sentiment = px.pie(df_news_sentiment, 
@@ -185,7 +185,7 @@ def sentiment_and_ratings_visualization(dataframe, biz_info, key):
                 )
 
                 # Check if there is any data to render
-                if df_biz_analyst_rating['count'].sum() == 0:
+                if df_biz_analyst_rating.empty or df_biz_analyst_rating['count'].sum() == 0:
                     st.warning("Analyst ratings data not available.")
                 else:
                     fig_analyst_rating = px.pie(df_biz_analyst_rating, 
