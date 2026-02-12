@@ -91,42 +91,38 @@ def metric_visualization(dataframe):
 # Company Info visualization
 def company_info_visualization(biz_info, selected_df):
     # Guard against empty datasets to avoid index errors
-    if biz_info is None or biz_info.empty:
+    if (biz_info is None or biz_info.empty) or (selected_df is None or selected_df.empty):
         st.warning("Company info not available for this ticker. It may be a ETF without underlying company data.")
-        
-    if selected_df is None or selected_df.empty:
-        st.warning("Price data not available for this ticker.")
-        
-
-    current_price = selected_df['price'].values[0]
-    with st.expander("Company Info"):
-        with st.container():
-            st.title(biz_info['Name'].values[0])
-            st.caption(f"Listed on {biz_info['Exchange'].values[0]}")
-            st.metric(label="Market Cap", value=f"${float(biz_info['MarketCapitalization'].values[0])/1e9:.2f} B")
-            st.subheader("About the company")
-            st.markdown(biz_info['Description'].values[0])
-            st.link_button(
-                label="Visit Official Website",
-                url=biz_info['OfficialSite'].values[0],
-                type="primary",
-                width='content'
-                )
-            sector, industry = st.columns(2)
-            sector.metric(label="Sector", value=biz_info['Sector'].values[0])
-            industry.metric(label="Industry", value=biz_info['Industry'].values[0], width='content')
-            
-            # Market data
-            st.write(f"Current price: {current_price}")
-            wk52_high, wk52_low, day50_avg, day200_avg = st.columns(4)
-            wk52_high.metric(label="52-Week High", 
-                             value=f"${float(biz_info['52WeekHigh'].values[0]):.2f}")
-            wk52_low.metric(label="52-Week Low", 
-                            value=f"${float(biz_info['52WeekLow'].values[0]):.2f}")
-            day50_avg.metric(label="50-Day Avg", 
-                             value=f"${float(biz_info['50DayMovingAverage'].values[0]):.2f}")
-            day200_avg.metric(label="200-Day Avg", 
-                              value=f"${float(biz_info['200DayMovingAverage'].values[0]):.2f}")
+    else:
+        current_price = selected_df['price'].values[0]
+        with st.expander("Company Info"):
+            with st.container():
+                st.title(biz_info['Name'].values[0])
+                st.caption(f"Listed on {biz_info['Exchange'].values[0]}")
+                st.metric(label="Market Cap", value=f"${float(biz_info['MarketCapitalization'].values[0])/1e9:.2f} B")
+                st.subheader("About the company")
+                st.markdown(biz_info['Description'].values[0])
+                st.link_button(
+                    label="Visit Official Website",
+                    url=biz_info['OfficialSite'].values[0],
+                    type="primary",
+                    width='content'
+                    )
+                sector, industry = st.columns(2)
+                sector.metric(label="Sector", value=biz_info['Sector'].values[0])
+                industry.metric(label="Industry", value=biz_info['Industry'].values[0], width='content')
+                
+                # Market data
+                st.write(f"Current price: {current_price}")
+                wk52_high, wk52_low, day50_avg, day200_avg = st.columns(4)
+                wk52_high.metric(label="52-Week High", 
+                                value=f"${float(biz_info['52WeekHigh'].values[0]):.2f}")
+                wk52_low.metric(label="52-Week Low", 
+                                value=f"${float(biz_info['52WeekLow'].values[0]):.2f}")
+                day50_avg.metric(label="50-Day Avg", 
+                                value=f"${float(biz_info['50DayMovingAverage'].values[0]):.2f}")
+                day200_avg.metric(label="200-Day Avg", 
+                                value=f"${float(biz_info['200DayMovingAverage'].values[0]):.2f}")
 
 #-------------------------------------------------------------------
 # News Sentiment and Analyst Ratings visualization

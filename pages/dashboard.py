@@ -116,10 +116,8 @@ with third_stock:
     biz_info_third = get_biz_info_4_selected_ticker(ENGINE, list_most_active_stocks[2])
     
     # Display the company info. in a expander
-    try:
-        company_info_visualization(biz_info_third, df_third_stock_info)
-    except Exception as e:
-        pass
+    company_info_visualization(biz_info_third, df_third_stock_info)
+
     
     # Display news sentiment and analystic ratings in pie charts
     sentiment_and_ratings_visualization(dataframe = df_third_stock_info, biz_info=biz_info_third, key=f'third_stock_{list_most_active_stocks[2]}')
