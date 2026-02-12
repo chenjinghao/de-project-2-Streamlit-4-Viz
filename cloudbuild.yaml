@@ -1,11 +1,24 @@
 steps:
+  # 0. Pull the previous image to use as cache (allow failure if it's the first run)
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker pull gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest || exit 0']
+
   # 1. Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA', '.']
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest'
+      - '--cache-from'
+      - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest'
+      - '.'
 
-  # 2. Push the Docker image to Container Registry
+  # 2. Push the Docker image (pushes both :$COMMIT_SHA and :latest)
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME']
 
   # 3. Deploy the image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -19,9 +32,9 @@ steps:
       - '--region'
       - '$_REGION'
       - '--allow-unauthenticated'
-      - '--set-secrets=ENVIRONMENT=projects/$PROJECT_ID/secrets/environnement/versions/latest'
-      - '--set-secrets=DATABASE_URL=projects/$PROJECT_ID/secrets/conn_stocks_db/versions/latest'
-      - '--set-secrets=gcp_service_acc=projects/$PROJECT_ID/secrets/service_account/versions/latest'
+      - '--set-secrets=ENVIRONMENT=environnement:latest'
+      - '--set-secrets=DATABASE_URL=conn_stocks_db:latest'
+      - '--set-secrets=gcp_service_acc=service_account:latest'
 
 
 substitutions:
@@ -30,6 +43,7 @@ substitutions:
 
 images:
   - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
