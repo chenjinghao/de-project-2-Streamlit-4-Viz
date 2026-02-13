@@ -23,6 +23,7 @@ def get_engine():
     elif env == "PRODUCTION":
         return sqlalchemy.create_engine(os.environ.get("DATABASE_URL"))
     
+    # At first, the project was previously deployed on GCP Cloud SQL
     elif env == "CLOUD_SQL":
         # 1. Setup credentials once
         sa_info = json.loads(os.environ.get("gcp_service_acc"))

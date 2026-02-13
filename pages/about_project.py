@@ -57,7 +57,7 @@ with col_elt:
     use_container_width=True,
     )
 ##Project Architecture Diagram
-st.image(image="static/img_project-de-workflow.png", caption="Project Architecture Diagram")
+st.image(image="static/img_project-de-workflow_v2-2.png", caption="Project Architecture Diagram")
 
 
 ## Know about me section
