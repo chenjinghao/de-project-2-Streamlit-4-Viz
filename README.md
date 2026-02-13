@@ -36,7 +36,7 @@ The dashboard visualizes the top 3 most actively traded tickers for a selected d
 
 #### 2. Infrastructure
 
-![Project Architecture Diagram](static\img_project-de-workflow_v2-2.png)
+![Project Architecture Diagram](static/img_project-de-workflow_v2-2.png)
 
 <details>
 
@@ -46,7 +46,7 @@ The dashboard visualizes the top 3 most actively traded tickers for a selected d
 
 > *Note: This infrastructure costs approximately USD 50+ per month.*
 
-![Project Architecture Diagram](static\img_project-de-workflow.png)
+![Project Architecture Diagram](static/img_project-de-workflow.png)
 
 </details>
 
