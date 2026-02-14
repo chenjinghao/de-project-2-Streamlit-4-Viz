@@ -13,6 +13,7 @@
 
 
 ### 🚀 Project Overview
+![Tech Stack](https://skills.syvixor.com/api/icons?perline=15&i=googlecloud,python,postgresql,streamlit,github)
 
 This repository hosts the **Frontend Visualization Suite** for my Data Engineering Capstone Project. It serves as the user-facing layer of a comprehensive data platform, transforming raw financial data processed by my backend pipeline into actionable insights.
 
@@ -133,3 +134,10 @@ de-project-2-Streamlit-4-Viz/
 * [Quickstart: Build and deploy a Python (Streamlit) web app to Cloud Run](https://docs.cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-python-streamlit-service)
 * [Streamlit Documentation](https://docs.streamlit.io)
 * [Connect Streamlit to a private Google Sheet](https://docs.streamlit.io/develop/tutorials/databases/private-gsheet)
+
+## Connect with me
+To know more about me and my projects, please visit my personal website: 
+:globe_with_meridians: [https://adamchenjinghao.notion.site](https://adamchenjinghao.notion.site)
+
+:email: [Adam_CJH@outlook.com](mailto:Adam_CJH@outlook.com)
+:raising_hand_man: [Linkedin.com/in/chenjinghao/](https://www.linkedin.com/in/adam-cjh)
