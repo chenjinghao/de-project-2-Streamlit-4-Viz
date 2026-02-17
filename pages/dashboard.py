@@ -14,15 +14,14 @@ st.set_page_config(
 # Connect to the database and get dates
 ENGINE = get_engine()
 
-
 st.title("Tickers Analysis Dashboard")
 st.markdown('The top 3 most active tickers based on trading volume for a selected date.')
 # Getting data
 
 ## Date selection
 @st.cache_data
-def load_dates():
-    return get_dates(ENGINE)
+def load_dates(_engine):
+    return get_dates(_engine)
 
 ## Getting the ticker info from table mart_price_news__analysis for the selected date, and display the top 3 most active tickers based on volume
 @st.cache_data
@@ -36,7 +35,7 @@ def load_selected_date_stock_price_info(selected_date):
 
 
 # Main content
-dates = load_dates()
+dates = load_dates(ENGINE)
 if not dates:
     st.warning("No dates available. Please check the database connection.")
     st.stop()

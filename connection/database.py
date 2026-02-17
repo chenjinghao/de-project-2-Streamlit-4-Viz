@@ -17,8 +17,12 @@ def get_engine():
         env = os.environ.get("ENVIRONMENT")
 
     if env == "development":
-        local_url = st.secrets["local_db"]["url"]
-        return sqlalchemy.create_engine(local_url)
+        if str(st.secrets['local_test_cloud_db']['cloud_test']):
+            local_url = st.secrets["local_test_cloud_db"]["url"]
+            return sqlalchemy.create_engine(local_url)
+        else:
+            local_url = st.secrets["local_db"]["url"]
+            return sqlalchemy.create_engine(local_url)
     
     elif env == "PRODUCTION":
         return sqlalchemy.create_engine(os.environ.get("DATABASE_URL"))
