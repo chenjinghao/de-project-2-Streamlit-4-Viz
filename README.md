@@ -2,6 +2,29 @@
 
 ## 📈 Tickers Analysis Dashboard
 > 🌐 **Live Demo:** [JINGHAOdata.engineer](https://www.jinghaodata.engineer/)
+<details>
+
+<summary>Screenshot of the Dashboard</summary>
+
+#### :exclamation: In case the app is down.
+
+<details>
+
+<summary>When the expanders are on: </summary>
+
+![When the expanders are on](static/screencapture-jinghaodata-engineer-expander-on.png)
+
+</details>
+
+<details>
+
+<summary>When the expanders are off: </summary>
+
+![Project Architecture Diagram](static/screencapture-jinghaodata-engineer-expander-off.png)
+
+</details>
+
+</details>
 
 ### 📖 Table of Contents
 - [Project Overview](#-project-overview)
