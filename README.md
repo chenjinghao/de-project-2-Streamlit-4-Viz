@@ -2,6 +2,7 @@
 
 ## 📈 Tickers Analysis Dashboard
 > 🌐 **Live Demo:** [JINGHAOdata.engineer](https://www.jinghaodata.engineer/)
+Or visit alternative option: [Dashboard make with Tableau Public](https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 <details>
 
 <summary>Screenshot of the Dashboard</summary>
@@ -36,7 +37,7 @@
 
 
 ### 🚀 Project Overview
-![Tech Stack](https://skills.syvixor.com/api/icons?perline=15&i=googlecloud,python,postgresql,streamlit,github)
+![Tech Stack](https://skills.syvixor.com/api/icons?perline=15&i=googlecloud,python,postgresql,streamlit,tableau,github)
 
 This repository hosts the **Frontend Visualization Suite** for my Data Engineering Capstone Project. It serves as the user-facing layer of a comprehensive data platform, transforming raw financial data processed by my backend pipeline into actionable insights.
 
