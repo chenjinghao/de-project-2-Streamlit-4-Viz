@@ -14,8 +14,9 @@ st.set_page_config(
 # Connect to the database and get dates
 ENGINE = get_engine()
 
-st.title("Tickers Analysis Dashboard")
-st.markdown('The top 3 most active tickers based on trading volume for a selected date.')
+st.title("Tickers Analysis Dashboard",text_alignment='center')
+st.markdown('The top 3 most active tickers based on trading volume for a selected date.',text_alignment='center')
+st.markdown('''[Tableau Version](https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)''', text_alignment='right')
 # Getting data
 
 ## Date selection

@@ -15,4 +15,3 @@ pages = {
 
 pg = st.navigation(pages, position='top', expanded=True)
 pg.run()
-
