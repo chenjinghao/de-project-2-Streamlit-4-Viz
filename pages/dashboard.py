@@ -11,13 +11,22 @@ st.set_page_config(
     page_icon=":material/code_blocks:",
 )
 
-# Connect to the database and get dates
-ENGINE = get_engine()
-
 st.title("Tickers Analysis Dashboard",text_alignment='center')
 st.markdown('The top 3 most active tickers based on trading volume for a selected date.',text_alignment='center')
 st.markdown('''[Tableau Version](https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)''', text_alignment='right')
 # Getting data
+
+# Connect to the database
+@st.cache_resource
+def load_engine():
+    return get_engine()
+
+try:
+    ENGINE = load_engine()
+except Exception as exc:
+    st.error("Database connection is not configured correctly.")
+    st.caption(str(exc))
+    st.stop()
 
 ## Date selection
 @st.cache_data
@@ -36,9 +45,18 @@ def load_selected_date_stock_price_info(selected_date):
 
 
 # Main content
-dates = load_dates(ENGINE)
+try:
+    dates = load_dates(ENGINE)
+except Exception as exc:
+    st.error("Unable to load available dates from the database.")
+    st.caption(str(exc))
+    st.stop()
+
 if not dates:
-    st.warning("No dates available. Please check the database connection.")
+    st.warning(
+        "Connected to the database, but no dates were found in mart_price_news__analysis. "
+        "Run the backend ELT pipeline or load data into this table."
+    )
     st.stop()
 
 selected_date = st.selectbox(label="Select a date", options=dates)
@@ -49,7 +67,17 @@ st.session_state['selected_date'] = selected_date
 
 
 ## Create tabs for the top 3 most active stocks
-df_selected_date_stock_info = load_selected_date_stock_info(selected_date=st.session_state['selected_date'])
+try:
+    df_selected_date_stock_info = load_selected_date_stock_info(selected_date=st.session_state['selected_date'])
+except Exception as exc:
+    st.error("Unable to load ticker data for the selected date.")
+    st.caption(str(exc))
+    st.stop()
+
+if df_selected_date_stock_info is None or df_selected_date_stock_info.empty:
+    st.warning(f"No ticker data found for {st.session_state['selected_date']}.")
+    st.stop()
+
 df_stock_ranked_by_volume = df_selected_date_stock_info[['ticker', 'volume']].sort_values(by='volume', ascending=False).reset_index(drop=True)
 list_most_active_stocks = df_stock_ranked_by_volume['ticker'][:3].tolist()
 
