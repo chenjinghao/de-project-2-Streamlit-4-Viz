@@ -5,8 +5,8 @@ pages = {
     "Dashboard": [
         st.Page("pages/dashboard.py", title="Dashboard")
     ],
-    "Projects": [
-        st.Page("pages/about_project.py", title="About my project"),
+    "About this Project": [
+        st.Page("pages/about_project.py", title="About this Project"),
     ],
     "About me": [
         st.Page("pages/about_me.py", title="About Me"),
