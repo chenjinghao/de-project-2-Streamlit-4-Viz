@@ -7,6 +7,7 @@ A data engineering portfolio project that turns processed stock-market data into
 
 
 **YouTube Demo video:**
+
 [![Watch the video](https://img.youtube.com/vi/HWq92IGbM04/0.jpg)](https://www.youtube.com/watch?v=HWq92IGbM04)
 
 
