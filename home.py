@@ -1,17 +1,12 @@
 import streamlit as st
 
 # Navigation setup with multiple pages on the top position
-pages = {
-    "Dashboard": [
-        st.Page("pages/dashboard.py", title="Dashboard")
-    ],
-    "About this Project": [
-        st.Page("pages/about_project.py", title="About this Project"),
-    ],
-    "About me": [
-        st.Page("pages/about_me.py", title="About Me"),
-    ],
-}
 
-pg = st.navigation(pages, position='top', expanded=True)
+pg = st.navigation([st.Page("pages/dashboard.py", title="Dashboard"), 
+                    st.Page("pages/about_project.py", title="About this Project"), 
+                    st.Page("pages/about_me.py", title="About Me"), 
+                    st.Page("https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link", title="Tableau Version"),
+                    st.Page("https://github.com/chenjinghao/ms_fabric_project", title="Microsoft Fabric & Power BI Version")], 
+                    position='top', expanded=True)
+
 pg.run()

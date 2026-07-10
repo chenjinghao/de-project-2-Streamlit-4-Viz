@@ -1,5 +1,5 @@
 # requirements.txt
-streamlit==1.53.1
+streamlit==1.59.1
 gspread
 sqlalchemy
 google-auth
