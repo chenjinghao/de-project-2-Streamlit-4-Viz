@@ -1,10 +1,14 @@
 # Financial Market Analytics Dashboard
+![Tech Stack](https://skills.syvixor.com/api/icons?perline=15&i=googlecloud,python,postgresql,streamlit,tableau,docker,github)
+
+[Live Streamlit Dashboard](https://www.jinghaodata.engineer/) | [Tableau Public Backup](https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) | [Microsoft Fabric & Power BI Version](https://github.com/chenjinghao/ms_fabric_project) | [Backend ELT Repository](https://github.com/chenjinghao/de-project-1-airflow-dbt-4-ELT) | [Portfolio](https://adamchenjinghao.notion.site)
 
 A data engineering portfolio project that turns processed stock-market data into an interactive analytics dashboard. This repository contains the Streamlit visualization layer for a larger end-to-end platform: backend ingestion and transformation happen in a companion Airflow/dbt project, while this app focuses on analysis delivery, dashboard UX, deployment, and stakeholder-facing communication.
 
-[Live Streamlit Dashboard](https://www.jinghaodata.engineer/) | [Tableau Public Backup](https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) | [Backend ELT Repository](https://github.com/chenjinghao/de-project-1-airflow-dbt-4-ELT) | [Portfolio](https://adamchenjinghao.notion.site)
 
-![Tech Stack](https://skills.syvixor.com/api/icons?perline=15&i=googlecloud,python,postgresql,streamlit,tableau,docker,github)
+**YouTube Demo video:**
+[![Watch the video](https://img.youtube.com/vi/HWq92IGbM04/0.jpg)](https://www.youtube.com/watch?v=HWq92IGbM04)
+
 
 ## Why This Project Matters
 
