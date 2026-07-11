@@ -180,4 +180,9 @@ st.markdown("""
 
 #-------------------------------------------------------------------
 st.markdown("© 2026 JINGHAO CHEN. All rights reserved.")
+
+
+if st.button("🔄 Refresh Data"):
+    st.cache_data.clear()
+    st.rerun()
 # End of the page
