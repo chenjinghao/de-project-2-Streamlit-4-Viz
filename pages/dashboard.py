@@ -13,9 +13,9 @@ st.set_page_config(
 
 st.title("Tickers Analysis Dashboard",text_alignment='center')
 st.markdown('The top 3 most active tickers based on trading volume for a selected date.',text_alignment='center')
-st.markdown('''[Tableau Version](https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)''', text_alignment='right')
-st.page_link("https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link", label="Tableau Version")
-st.page_link("https://github.com/chenjinghao/ms_fabric_project", label="Microsoft Fabric & Power BI Version")
+# st.markdown('''[Tableau Version](https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)''', text_alignment='right')
+# st.page_link("https://public.tableau.com/views/TickersAnalysisDashboard/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link", label="Tableau Version")
+# st.page_link("https://github.com/chenjinghao/ms_fabric_project", label="Microsoft Fabric & Power BI Version")
 # Getting data
 
 # Connect to the database
